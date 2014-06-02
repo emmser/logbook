@@ -1,126 +1,150 @@
 <html>
+	<head>
+		<title>Sequencing Logbook</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+		<style>
+			.center-block {
+				float: none;
+			}
+			.centered {
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: auto;
+				text-align: center;
+				max-width: 400px
+			}
+			.input-group-addon {
+				font-weight: bold;
+				font-variant: small-caps;
+				text-align: right;
+			}
+			.run-table .input-group-addon {
+				min-width: 150px;
+			}
+			.logbook .input-group-addon {
+				min-width: 90px;
+			}
+		</style>
+	</head>
 
-<head>
-<title>Sequencing Logbook</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<body style="padding: 20">
+		<img src="SciLifeLab-logo-orange.gif" alt="SciLife" style="max-width:400px"></img>
+		<div class="panel panel-default run-table" style="max-width:600px">
+			<div class="panel panel-heading">
+				<h3>Sequencing Run Table</h3>
+			</div>
+			<div class="panel panel-body">
+				<form role="form" action="insert-test.php" method="POST">
+					<div class="input-group">
+						<span class="input-group-addon">flowcell id</span>
+						<input type="text" id="flowcell" class="form-control" placeholder="A0A0AAAXX">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">seq reagent lot</span>
+						<input type="text" id="seq_lot" class="form-control" placeholder="RGT0000000">
+						
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">cluster reagent lot</span>
+						<input type="text" id="cluster_lot" class="form-control" placeholder="RGT0000000">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">sequencing document</span>
+						<input type="text" id="seq_doc" class="form-control" placeholder="10280_02">
+					</div>
+					<br>
+					<div style="text-align:right">
+						<input type="submit" value="Submit" class="btn btn-warning">
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="panel panel-default" style="max-width:600px">
+			<div class="panel panel-heading">
+				<h3>Logbook</h3>
+			</div>
+			<div class="panel panel-body logbook">
+			<div class="well well-sm">
+				<dl class="dl-horizontal">
+					<dt>Date</dt>
+					<dd>
+						<script language="JavaScript">
+							var date = new Date();
+							document.write(date.toDateString());
+						</script>
+					</dd>
+					<dt>Time</dt>
+					<dd>
+						<script language="JavaScript">
+							var date = new Date();
+							document.write(date.toLocaleTimeString());
+						</script>
+					</dd>
+				</dl>
+				</div>
+				<form role="form" action="insert-logbook.php" method="POST">
+					<div class="input-group">
+						<span class="input-group-addon">instrument</span>
+						<select name="instrument" class="form-control">
+							<option selected="instrument" value=""></option>
+							<option value="D00450-arnold">D00450-Arnold</option>
+					  		<option value="D00410-sigourney">D00410-Sigourney</option>
+					  		<option value="D00134-sylvester">D00134-Sylvester</option>
+						</select>
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">wash/start</span>
+						<select name ="method" class="form-control">
+							<option selected="method" value=""></option>
+					  		<option value="maintenancewash">Maintenance wash</option>
+					  		<!--<option value="waterwash">Waterwash</option>-->
+					  		<option value="sequencingstart-RR">Sequencing start (RapidRun)</option>
+					  		<!--<option value="sequencingstart-HO">Sequencing start HighOutput</option>-->
+						</select>
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">flowcell id</span>
+						<input type="text" name="flowcellid" class="form-control">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">comment</span>
+						<input type="text" name="comment" class="form-control">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">signature</span>
+						<input type="text" name="signature" class="form-control">
+					</div>
+					<br>
+					<div style="text-align:right">
+						<input type="submit" value="Submit" class="btn btn-warning">
+					</div>
+				</form>
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-
-<img src="http://127.0.0.1/~emmasernstad/hiseq_logbook/SciLifeLab-logo-orange" alt="SciLife" width="400" height="200"></head>
-
-<body style="background-color:#ffffff">
-
-<ul>
-<h1>Sequencing Run Table</h1>
-
-	<form action="insert-test.php" method="POST">
-	
-	<li>Flowcell ID:</li>
-	<input type="text" name="flowcell" >
-		
-	<li>Sequencing Reagent lotNo:</li>
-	<input type="text" name="seq_lot" >
-	
-	<li>Cluster Reagent lotNo:</li>
-	<input type="text" name="cluster_lot" >
-	
-	<li>Sequencing DocumentNo:</li>
-	<input type="text" name="seq_doc" >
-	<br><br>
-	<input type="submit" value="Skicka" class="btn btn-warning">
-	
-	</form>
-	
-</ul>	
-
-<br><br>
-
-
-<ul>
-<h1>Logbook</h1>
-
-	<form>
-	<b>Date:</b>
-	<br>
-	<script language = "JavaScript">
-	var now = new Date();
-	var dayNames = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
-	var monNames = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
-	document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + now.getDate() + ", " + now.getFullYear());
-	</script>
-	<br>
-	
-
-	<b>Time:</b>
-	<br>
-	<script language = "JavaScript">
-	var now = new Date();
-	document.write(now.getHours() + ":" + now.getMinutes());
-	</script>
-	<br><br>
-	</form>
-	
-
-
-	<form action="insert-logbook.php" method="POST">
-	<b>Instrument:</b>
-	<select name="instrument">
-		<option selected="instrument" value=""></option>
-		<option value="D00450-arnold">D00450-Arnold</option>
-  		<option value="D00410-sigourney">D00410-Sigourney</option>
-  		<option value="D00134-sylvester">D00134-Sylvester</option>
-	</select>
-	<br /><br /> 
-
-	
-	<b>Wash/Start:</b>
-	<select name ="method">
-		<option selected="method" value=""></option>
-  		<option value="maintenancewash">Maintenance wash</option>
-  		<!--<option value="waterwash">Waterwash</option>-->
-  		<option value="sequencingstart-RR">Sequencing start (RapidRun)</option>
-  		<!--<option value="sequencingstart-HO">Sequencing start HighOutput</option>-->
-	</select>
-	<br><br>
-	
-	<b>Flowcell ID:</b>
-	<input type="text" name="flowcellid" >
-	<br><br>
-
-	<b>Comment:</b>
-	<input type="text" name="comment" >
-	<br><br>
-	
-	<b>Signature:</b>
-	<input type="text" name="signature" >
-	<br><br>
-	<input type="submit" value="Skicka" class="btn btn-warning">
-
-	</form>
-
-</ul>	
-
-<!-- Single button try to use dropdown with bootstrap - doesn't work -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    Action <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li class="divider"></li>
-    <li><a href="#">Separated link</a></li>
-  </ul>
-</div>
-	
-			
-	
-</body>
+		<!-- Single button try to use dropdown with bootstrap - doesn't work -->
+		<div class="btn-group">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				Action <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="#">Action</a></li>
+				<li><a href="#">Another action</a></li>
+				<li><a href="#">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#">Separated link</a></li>
+			</ul>
+		</div>
+	</body>
 
 </html>
