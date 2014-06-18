@@ -16,7 +16,7 @@
 				margin-right: auto;
 				margin-top: auto;
 				text-align: center;
-				max-width: 400px
+				max-width: 800px
 			}
 			.input-group-addon {
 				font-weight: bold;
@@ -32,44 +32,14 @@
 		</style>
 	</head>
 
-	<body style="padding: 20">
+	<body style="padding: 20" class="centered">
 		<img src="SciLifeLab-logo-orange.gif" alt="SciLife" style="max-width:400px"></img>
-		<div class="panel panel-default run-table" style="max-width:600px">
-			<div class="panel panel-heading">
-				<h3>Sequencing Run Table</h3>
-			</div>
-			<div class="panel panel-body">
-				<form role="form" action="insert-test.php" method="POST">
-					<div class="input-group">
-						<span class="input-group-addon">flowcell id</span>
-						<input type="text" id="flowcell" class="form-control" placeholder="A0A0AAAXX">
-					</div>
-					<br>
-					<div class="input-group">
-						<span class="input-group-addon">seq reagent lot</span>
-						<input type="text" id="seq_lot" class="form-control" placeholder="RGT0000000">
-						
-					</div>
-					<br>
-					<div class="input-group">
-						<span class="input-group-addon">cluster reagent lot</span>
-						<input type="text" id="cluster_lot" class="form-control" placeholder="RGT0000000">
-					</div>
-					<br>
-					<div class="input-group">
-						<span class="input-group-addon">sequencing document</span>
-						<input type="text" id="seq_doc" class="form-control" placeholder="10280_02">
-					</div>
-					<br>
-					<div style="text-align:right">
-						<input type="submit" value="Submit" class="btn btn-warning">
-					</div>
-				</form>
-			</div>
-		</div>
+		
+		
+		<!--Logbook form-->
 		<div class="panel panel-default" style="max-width:600px">
 			<div class="panel panel-heading">
-				<h3>Logbook</h3>
+				<h3>HiSeq - Logbook</h3>
 			</div>
 			<div class="panel panel-body logbook">
 			<div class="well well-sm">
@@ -119,32 +89,69 @@
 					<br>
 					<div class="input-group">
 						<span class="input-group-addon">comment</span>
-						<input type="text" name="comment" class="form-control">
+						<input type="text" name="comment" class="form-control" placeholder='Comment to logbook'>
 					</div>
 					<br>
 					<div class="input-group">
 						<span class="input-group-addon">signature</span>
-						<input type="text" name="signature" class="form-control">
+						<input type="text" name="signature" class="form-control" placeholder='Name'>
 					</div>
 					<br>
 					<div style="text-align:right">
-						<input type="submit" value="Submit" class="btn btn-warning">
+						<input type="submit" value="Send to logbook" class="btn btn-warning btn-lg">
 					</div>
 				</form>
-
-		<!-- Single button try to use dropdown with bootstrap - doesn't work -->
-		<div class="btn-group">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-				Action <span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" role="menu">
-				<li><a href="#">Action</a></li>
-				<li><a href="#">Another action</a></li>
-				<li><a href="#">Something else here</a></li>
-				<li class="divider"></li>
-				<li><a href="#">Separated link</a></li>
-			</ul>
+				
+		<!--Instrument status form-->		
+		<div class="panel panel-default run-table" style="max-width:600px">
+			<div class="panel panel-heading">
+				<h3>Report instrument status</h3>
+			</div>
+			<div class="panel panel-body logbook">
+			<div class="well well-sm">
+				<dl class="dl-horizontal">
+					<dt>Function:</dt>
+					<dd>Reports the status service engineer and logbook</dd>
+					
+				</dl>
+			</div>
+			<div class="panel panel-body">
+				<form role="form" action="insert-reportstatus.php" method="POST">
+					<div class="input-group">
+						<span class="input-group-addon">instrument</span>
+						<select name="instrument" class="form-control">
+							<option selected="instrument" value=""></option>
+							<option value="D00450-arnold">D00450-Arnold</option>
+					  		<option value="D00410-sigourney">D00410-Sigourney</option>
+					  		<option value="D00134-sylvester">D00134-Sylvester</option>
+						</select>
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">comment</span>
+						<input type="text" name="comment" class="form-control" placeholder="Message to service engineer">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">signature</span>
+						<input type="text" name="signature" class="form-control" placeholder='Name'>
+					</div>
+					<br>
+					<div class="text-right">
+					<div class="btn-group" style="text-align:center">
+    					<button name="status" type="submit" value="outoforder" class="btn btn-danger btn-lg">Out of order</label>
+    					<button name="status" type="submit" value="inservice" class="btn btn-success btn-lg">In service</label>
+ 					</div>
+ 					</div>
+ 					<br>
+ 					
+				</form>
+			</div>
+			
+			
+			
 		</div>
+	
 	</body>
 
 </html>
